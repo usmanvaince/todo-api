@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class LoginController extends Controller
 {
@@ -17,6 +18,6 @@ class LoginController extends Controller
         }
         return response()->json([
             'message' => 'The provided credentials are incorrect.'
-        ]);
+        ], Response::HTTP_BAD_REQUEST);
     }
 }
