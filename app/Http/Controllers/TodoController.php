@@ -12,12 +12,12 @@ class TodoController extends Controller
 {
     public function index(Request $request)
     {
-        $perPage = $request->input('per_page', 10);
         $query = Todo::where('user_id', Auth::id());
         if ($request->has('search')) {
             $query->where('title', 'LIKE', '%' . $request->input('search') . '%');
         }
-        $todos = $query->paginate($perPage);
+
+        $todos = $query->paginate(10);
 
         return response()->json($todos);
     }
